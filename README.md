@@ -40,8 +40,13 @@ From the perspective of the user:
 
 ### Design Choices
 
-!["spg_architecture"](architecture_diagrams/spg_architecture.png "spg architecture")
+Architectural overview:
 
+!["spg_architecture"](architecture_diagrams/spg_architecture.drawio.png "spg architecture")
+
+Upload architecture:
+
+!["spg_upload_architecture"](architecture_diagrams/spg_upload_architecture.drawio.png "spg upload architecture")
 
 ### Technologies Used
 
