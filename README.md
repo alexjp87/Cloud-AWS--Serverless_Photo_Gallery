@@ -9,19 +9,17 @@ The goal of this project is to gain experience designing and implementing server
 
 
 ### Project Description
-'Serverless Photo Gallery' is a cloud-based photo gallery application that allows users to upload, view, and delete images.
+'Serverless Photo Gallery' is a cloud-based photo gallery application that allows users to interact with a web interface hosted on Amazon S3, where they can upload photos, view their gallery, and delete images.
 
-AWS services are leveraged to provide a scalable, serverless architecture with minimal infrastructure management.
-
-Users interact with a web interface hosted on Amazon S3, where they can upload photos, view their gallery, and manage images.
+AWS services are leveraged to provide a scalable, serverless architecture requiring minimal infrastructure management.
 
 The backend logic is handled by AWS Lambda, which processes image uploads and deletions, while metadata is stored in Amazon DynamoDB.
 
-The application is designed to dynamically fetch and display images from Amazon S3, offering a fast and cost-efficient solution for hosting a photo gallery without requiring the management of servers.
+The application is designed to dynamically fetch and display images from Amazon S3, offering a fast and cost-efficient solution for hosting a photo gallery without the management of servers.
 
 
 ### User Stories
-From the perspective of the cloud engineer:
+From the perspective of the cloud professional:
 
 - As a future cloud professional, I want to create a Lambda function that allows users to upload images through the web application, so that the images are stored in Amazon S3 and the metadata is saved in DynamoDB for future retrieval
 
@@ -40,6 +38,8 @@ From the perspective of the user:
 
 ### Design Choices
 
+#### Architecture Diagrams:
+
 Architectural overview:
 
 !["spg_architecture"](architecture_diagrams/spg_architecture.drawio.png "spg architecture")
@@ -47,6 +47,51 @@ Architectural overview:
 Upload architecture:
 
 !["spg_upload_architecture"](architecture_diagrams/spg_upload_architecture.drawio.png "spg upload architecture")
+
+View architecture:
+
+!["spg_view_architecture"](architecture_diagrams/spg_view_architecture.drawio.png "spg view architecture")
+
+#### AWS Infrastructure:
+
+**Amazon S3:** Create and configure S3 bucket to serve as both a storage solution for uploaded images and as a host for the static web app. Update bucket policy to allow public read access, and configure CORS to allow the web app to directly communicate with the bucket.
+
+Step 1 - Create an S3 Bucket
+
+!["create-bucket"](aws_console_screenshots/create_bucket.PNG)
+
+Step 2 - Set the S3 bucket policy (make bucket objects publicly accessible so users can retrieve their photos via the application)
+
+!["s3_policy"](aws_console_screenshots/s3_policy.PNG "S3 policy")
+
+Policy explanation:
+
+`"Version": "2012-10-17":` language version
+
+`"Sid": "PublicReadGetObject"` policy identifier
+
+`"Effect": "Allow"` "ALLOW"
+
+`"Principal": "*"` "ALL USERS" ("*" means apply policy to all users)
+
+`"Action": "s3:GetObject"` "TO PERFORM THE GetObject ACTION (retrieve objects (images) from the bucket)"
+
+`"Resource": "arn:aws:s3:::photo-gallery-images-{your-unique-id}/*"` "APPLY POLICY TO ALL BUCKET OBJECTS" (/* specifies all files)
+
+Step 3 - Enable Cross-Origin Resource Sharing (because using serverless architecture, i.e. the web app communicates directly with S3 to perform operations. Since the frontend and S3 are on different domains (i.e., the browser’s domain and AWS’s domain), this is a cross-origin request)
+
+!["cross-origin_resource_sharing"](aws_console_screenshots/cross-origin_resourse_sharing.PNG "cross-origin_resource_sharing")
+
+Configuration explanation:
+
+`"AllowedHeaders":["*"]` "ALLOW THE BROWSER TO SEND ANY HTTP HEADERS IN THE REQUEST TO THE S3 BUCKET"
+
+`"AllowedMethods":["GET", "HEAD"]` (define HTTP methods permitted for cross-origin requests)
+`"GET"` "ALLOW CLIENT TO RETRIEVE RESOUCES FROM BUCKET"
+`"HEAD"` "ALLOW CLIENT TO REQUEST RESOURCE METADATA"
+
+`"AllowedOrigins":["*"]` "ALLOW ANY ORIGIN (DOMAIN) TO SEND CROSS-ORIGIN REQUESTS TO BUCKET" (for increased security, restrict to specific origins)
+
 
 ### Technologies Used
 
