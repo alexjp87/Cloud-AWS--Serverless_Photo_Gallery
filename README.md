@@ -42,15 +42,19 @@ From the perspective of the user:
 
 Architectural overview:
 
-!["spg_architecture"](architecture_diagrams/spg_architecture.drawio.png "spg architecture")
+!["spg_architecture"](architecture_diagrams/spg_architecture.png "spg architecture")
 
 Upload architecture:
 
-!["spg_upload_architecture"](architecture_diagrams/spg_upload_architecture.drawio.png "spg upload architecture")
+!["spg_upload_architecture"](architecture_diagrams/spg_upload_architecture.png "spg upload architecture")
 
 View architecture:
 
-!["spg_view_architecture"](architecture_diagrams/spg_view_architecture.drawio.png "spg view architecture")
+!["spg_view_architecture"](architecture_diagrams/spg_view_architecture.png "spg view architecture")
+
+Delete architecture:
+
+!["spg_delete_architecture"](architecture_diagrams/spg_delete_architecture.png "spg delete architecture")
 
 #### AWS Infrastructure:
 
@@ -58,11 +62,11 @@ View architecture:
 
 Step 1 - Create an S3 Bucket
 
-!["create-bucket"](aws_console_screenshots/create_bucket.PNG)
+!["create-bucket"](aws_screenshots/create_bucket.PNG)
 
 Step 2 - Set the S3 bucket policy (make bucket objects publicly accessible so users can retrieve their photos via the application)
 
-!["s3_policy"](aws_console_screenshots/s3_policy.PNG "S3 policy")
+!["s3_policy"](aws_screenshots/s3_policy.PNG "S3 policy")
 
 Policy explanation:
 
@@ -80,7 +84,7 @@ Policy explanation:
 
 Step 3 - Enable Cross-Origin Resource Sharing (because using serverless architecture, i.e. the web app communicates directly with S3 to perform operations. Since the frontend and S3 are on different domains (i.e., the browser’s domain and AWS’s domain), this is a cross-origin request)
 
-!["cross-origin_resource_sharing"](aws_console_screenshots/cross-origin_resourse_sharing.PNG "cross-origin_resource_sharing")
+!["cross-origin_resource_sharing"](aws_screenshots/cross-origin_resourse_sharing.PNG "cross-origin_resource_sharing")
 
 Configuration explanation:
 
@@ -113,5 +117,5 @@ Version control:
 - Github
 
 Diagrams:
-- Draw.io
+- Diagrams.net
 
