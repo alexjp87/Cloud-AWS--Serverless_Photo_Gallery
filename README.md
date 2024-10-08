@@ -58,7 +58,7 @@ Delete architecture:
 
 #### AWS Infrastructure:
 
-**Amazon S3:** Create and configure S3 bucket to serve as both a storage solution for uploaded images and as a host for the static web app. Update bucket policy to allow public read access, and configure CORS to allow the web app to directly communicate with the bucket. Steps completed using the AWS management console.
+**Amazon S3:** Create and configure S3 bucket to serve as both a storage solution for uploaded images and as a host for the static web app: update bucket policy to allow public read access; configure CORS to allow the web app to directly communicate with the bucket. Steps completed using the AWS management console.
 
 **Step 1** - Create an S3 Bucket
 
@@ -99,7 +99,7 @@ Configuration explanation:
 `"AllowedOrigins":["*"]` "ALLOW ANY ORIGIN (DOMAIN) TO SEND CROSS-ORIGIN REQUESTS TO BUCKET" (restrict to specific origins for increased security)
 
 
-**Amazon DynamoDB:** Create DynamoDB table to serve as storage solution for uploaded image metadata. Configure AWS CLI, create table, verify table creation, test table by creating sample record and querying to verify the record was created, and then deleting the record before verifying the deletion was successful. Steps completed using AWS CLI in bash terminal.
+**Amazon DynamoDB:** Create DynamoDB table to serve as storage solution for uploaded image metadata: configure AWS CLI; create table; verify table creation; test table by creating sample record and querying to verify the record was created; delete record before verifying deletion was successful. Steps completed using AWS CLI in bash terminal.
 
 **Step 1** Configure AWS CLI using access key ID and secret access key contained in 'admin_credentials', specify default region name and ouput format
 
@@ -142,6 +142,33 @@ The json output currently displays `"TableStatus": "CREATING"`. This status will
 **Step 7** Verify item successfully deleted (`scan` output shows empty table)
 
 !["07_test_verify_delete"](images/aws_screenshots/DynamoDB/07_test_verify_delete.PNG "Verify delete successful")
+
+**AWS IAM:** Create an IAM role allowing AWS Lambda to assume access to S3 and DynamoDB: Create trust policy; attach trust policy to IAM role; verify role was created; attach AWS-managed policies to role allowing full access to Amazon S3 and Amazon DynamoDB services; verify policies were attached. Steps completed using AWS CLI in bash terminal.
+
+**Step 1** Create trust policy json file (permits AWS Lambda to assume IAM role)
+
+!["01_trust_policy"](images/aws_screenshots/Lambda/01_trust_policy.PNG "Trust policy")
+
+**Step 2** Create IAM role, attaching trust policy
+
+!["02_create_role"](images/aws_screenshots/Lambda/02_create_role.PNG "Create IAM role")
+
+**Step 3** Verify IAM role was created
+
+!["03_verify_role"](images/aws_screenshots/Lambda/03_verify_role.PNG "Verify IAM role")
+
+**Step 4** Attach AWS-managed policy for full S3 access
+
+!["04_s3_access_policy"](images/aws_screenshots/Lambda/04_s3_access_policy.PNG "S3 access policy")
+
+**Step 5** Attach AWS-managed policy for full DynamoDB access
+
+!["05_dynamodb_access_policy"](images/aws_screenshots/Lambda/05_dynamodb_access_policy.PNG "DynamoDB access policy")
+
+**Step 6** Verify policies were attached to IAM role
+
+!["06_verify_policies"](images/aws_screenshots/Lambda/06_verify_policies.PNG "Verify policies")
+
 
 
 ### Technologies Used
