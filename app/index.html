@@ -12,12 +12,20 @@
 <body>
     <!-- Gallery heading -->
     <h1>Photo Gallery</h1>
+    <!-- Upload form -->
+     <form>
     <!-- 'Choose File' button -->
     <input type="file" id="fileInput" />
+    <!-- Input text box for photo title -->
+    <input type="text" id="title" placeholder="Title" />
+    <!-- repeat for photo description -->
+    <input type="text" id="description" placeholder="Description" />
     <!-- 'Upload Photo' button (SEE app.js LINE .. for uploadPhoto() function) -->
     <button onclick="uploadPhoto()">Upload Photo</button>
+    </form>
+
     <!-- Gallery container -->
-    <article id="gallery"></article>
+    <section id="gallery"></section>
     
     <!-- link with app.js -->
     <script src="app.js"></script>
