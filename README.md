@@ -1,7 +1,7 @@
 # Serverless Photo Gallery
 
 
-## Cloud/AWS project - practice using cloud technologies & AWS services by building a photo gallery web app with a scalable, serverless architecture
+## Cloud/AWS project - practice using cloud technologies & AWS services by building a photo gallery web app with scalable, serverless architecture
 
 
 ### Project Goals
@@ -54,7 +54,7 @@ View architecture:
 
 #### AWS Infrastructure:
 
-**Amazon S3:** Create and configure S3 bucket to serve as both a storage solution for uploaded images and as a host for the static web app. Update bucket policy to allow public read access, and configure CORS to allow the web app to directly communicate with the bucket.
+**Amazon S3:** Create and configure S3 bucket to serve as both a storage solution for uploaded images and as a host for the static web app. Update bucket policy to allow public read access, and configure CORS to allow the web app to directly communicate with the bucket. Steps completed using the AWS management console.
 
 Step 1 - Create an S3 Bucket
 
@@ -74,7 +74,7 @@ Policy explanation:
 
 `"Principal": "*"` "ALL USERS" ("*" means apply policy to all users)
 
-`"Action": "s3:GetObject"` "TO PERFORM THE GetObject ACTION (retrieve objects (images) from the bucket)"
+`"Action": "s3:GetObject"` "TO PERFORM THE GetObject ACTION (i.e. retrieve objects (images) from the bucket)"
 
 `"Resource": "arn:aws:s3:::photo-gallery-images-{your-unique-id}/*"` "APPLY POLICY TO ALL BUCKET OBJECTS" (/* specifies all files)
 
@@ -87,10 +87,12 @@ Configuration explanation:
 `"AllowedHeaders":["*"]` "ALLOW THE BROWSER TO SEND ANY HTTP HEADERS IN THE REQUEST TO THE S3 BUCKET"
 
 `"AllowedMethods":["GET", "HEAD"]` (define HTTP methods permitted for cross-origin requests)
+
 `"GET"` "ALLOW CLIENT TO RETRIEVE RESOUCES FROM BUCKET"
+
 `"HEAD"` "ALLOW CLIENT TO REQUEST RESOURCE METADATA"
 
-`"AllowedOrigins":["*"]` "ALLOW ANY ORIGIN (DOMAIN) TO SEND CROSS-ORIGIN REQUESTS TO BUCKET" (for increased security, restrict to specific origins)
+`"AllowedOrigins":["*"]` "ALLOW ANY ORIGIN (DOMAIN) TO SEND CROSS-ORIGIN REQUESTS TO BUCKET" (restrict to specific origins for increased security)
 
 
 ### Technologies Used
