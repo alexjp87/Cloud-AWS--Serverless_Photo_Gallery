@@ -42,19 +42,19 @@ From the perspective of the user:
 
 Architectural overview:
 
-!["spg_architecture"](architecture_diagrams/spg_architecture.png "SPG architecture")
+!["spg_architecture"](images/architecture_diagrams/spg_architecture.png "SPG architecture")
 
 Upload architecture:
 
-!["spg_upload_architecture"](architecture_diagrams/spg_upload_architecture.png "SPG upload architecture")
+!["spg_upload_architecture"](images/architecture_diagrams/spg_upload_architecture.png "SPG upload architecture")
 
 View architecture:
 
-!["spg_view_architecture"](architecture_diagrams/spg_view_architecture.png "SPG view architecture")
+!["spg_view_architecture"](images/architecture_diagrams/spg_view_architecture.png "SPG view architecture")
 
 Delete architecture:
 
-!["spg_delete_architecture"](architecture_diagrams/spg_delete_architecture.png "SPG delete architecture")
+!["spg_delete_architecture"](images/architecture_diagrams/spg_delete_architecture.png "SPG delete architecture")
 
 #### AWS Infrastructure:
 
@@ -62,11 +62,11 @@ Delete architecture:
 
 **Step 1** - Create an S3 Bucket
 
-!["create-bucket"](aws_screenshots/S3/01_create_bucket.PNG "Create S3 bucket")
+!["create-bucket"](images/aws_screenshots/S3/01_create_bucket.PNG "Create S3 bucket")
 
 **Step 2** - Set the S3 bucket policy (make bucket objects publicly accessible so users can retrieve their photos via the application)
 
-!["s3_policy"](aws_screenshots/S3/02_s3_policy.PNG "S3 policy")
+!["s3_policy"](images/aws_screenshots/S3/02_s3_policy.PNG "S3 policy")
 
 Policy explanation:
 
@@ -84,7 +84,7 @@ Policy explanation:
 
 **Step 3** - Enable Cross-Origin Resource Sharing (because using serverless architecture, i.e. the web app communicates directly with S3 to perform operations. Since the frontend and S3 are on different domains (i.e., the browser’s domain and AWS’s domain), this is a cross-origin request)
 
-!["cross-origin_resource_sharing"](aws_screenshots/S3/03_cross-origin_resourse_sharing.PNG "Cross-Origin Resource Sharing")
+!["cross-origin_resource_sharing"](images/aws_screenshots/S3/03_cross-origin_resourse_sharing.PNG "Cross-Origin Resource Sharing")
 
 Configuration explanation:
 
@@ -103,11 +103,11 @@ Configuration explanation:
 
 **Step 1** Configure AWS CLI using access key ID and secret access key contained in 'admin_credentials', specify default region name and ouput format
 
-!["01_aws_configure"](aws_screenshots/DynamoDB/01_aws_configure.PNG "AWS configure")
+!["01_aws_configure"](images/aws_screenshots/DynamoDB/01_aws_configure.PNG "AWS configure")
 
 **Step 2** Create Table
 
-!["02_create_table"](aws_screenshots/DynamoDB/02_create_table.PNG "Create table")
+!["02_create_table"](images/aws_screenshots/DynamoDB/02_create_table.PNG "Create table")
 
 Create table explanation (`\` is a line continuation symbol, used for command readability):
 
@@ -125,23 +125,23 @@ The json output currently displays `"TableStatus": "CREATING"`. This status will
 
 **Step 3** Verify table creation
 
-!["03_verify_table"](aws_screenshots/DynamoDB/03_verify_table.PNG "Verify table creation")
+!["03_verify_table"](images/aws_screenshots/DynamoDB/03_verify_table.PNG "Verify table creation")
 
 **Step 4** Add test item to table (include `"photoId"`, `"title"` and `"url"` for `--item`)
 
-!["04_test_add_item"](aws_screenshots/DynamoDB/04_test_add_item.PNG "Add test item")
+!["04_test_add_item"](images/aws_screenshots/DynamoDB/04_test_add_item.PNG "Add test item")
 
 **Step 5** Verify item creation (by default, `scan` returns all attributes for all items in a table)
 
-!["05_test_verify_item"](aws_screenshots/DynamoDB/05_test_verify_item.PNG "Verify test item")
+!["05_test_verify_item"](images/aws_screenshots/DynamoDB/05_test_verify_item.PNG "Verify test item")
 
 **Step 6** Delete test item (primary key `"photoId": {"S": "1"}` necessarily used to specify item for delete)
 
-!["06_test_delete_item"](aws_screenshots/DynamoDB/06_test_delete_item.PNG "Delete test item")
+!["06_test_delete_item"](images/aws_screenshots/DynamoDB/06_test_delete_item.PNG "Delete test item")
 
 **Step 7** Verify item successfully deleted (`scan` output shows empty table)
 
-!["07_test_verify_delete"](aws_screenshots/DynamoDB/07_test_verify_delete.PNG "Verify delete successful")
+!["07_test_verify_delete"](images/aws_screenshots/DynamoDB/07_test_verify_delete.PNG "Verify delete successful")
 
 
 ### Technologies Used
