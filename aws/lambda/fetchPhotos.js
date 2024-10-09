@@ -1,5 +1,7 @@
 // Import and load AWS SDK [the require() function loads JavaScript modules into the script, allowing interaction with the code]
 const AWS = require('aws-sdk');
+AWS.config.update({ region: 'us-west-2' });
+
 // Create an instance of the DynamoDB DocumentClient [DocumentClient abstracts underlying data types and makes it easier to work with JSON-style objects when interacting with DynamoDB. Typically used for common DynamoDB operations like put, get, scan, query, and delete]
 const DynamoDB = new AWS.DynamoDB.DocumentClient();
 

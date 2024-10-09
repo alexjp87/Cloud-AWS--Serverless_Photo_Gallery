@@ -1,4 +1,6 @@
 const AWS = require('aws-sdk');
+AWS.config.update({ region: 'us-west-2' });
+
 const S3 = new AWS.S3();
 const DynamoDB = new AWS.DynamoDB.DocumentClient();
 // Load UUID library (for generating unique IDs)

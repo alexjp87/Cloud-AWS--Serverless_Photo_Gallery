@@ -59,7 +59,7 @@ From the perspective of the user:
 
 
 ### - Amazon S3
-- Create and configure S3 bucket to serve as both a storage solution for uploaded images and as a host for the static web app: update bucket policy to allow public read access; configure CORS to allow the web app to directly communicate with the bucket. Steps completed using the AWS management console.
+- Create and configure S3 bucket to serve as both a storage solution for uploaded images and as a host for the static web app: update bucket policy to allow public read access; configure CORS to allow the web app to directly communicate with the bucket. Steps 1-3 completed using the AWS management console, steps 4-5 completed using AWS CLI in bash terminal.
 
 ***Step 1*** - **Create an S3 Bucket**
 
@@ -98,6 +98,22 @@ From the perspective of the user:
 `"HEAD"` *"ALLOW CLIENT TO REQUEST RESOURCE METADATA"*
 
 `"AllowedOrigins":["*"]` *"ALLOW ANY ORIGIN (DOMAIN) TO SEND CROSS-ORIGIN REQUESTS TO BUCKET"* (restrict to specific origins for increased security)
+
+***Step 4*** - **Enable static hosting on S3 bucket** (enable S3 bucket to serve web app (expose `app` files via a web URL))
+
+!["04_enable_static_hosting"](images/aws_screenshots/S3/04_enable_static_hosting.PNG "Enable S3 static hosting")
+
+***Step 5*** - **Verify static hosting enabled**
+
+!["05_verify_static_hosting"](images/aws_screenshots/S3/05_verify_static_hosting.PNG "Verify static hosting enabled")
+
+***Step 6*** - **Upload static website (/app) files**
+
+!["06_upload_app_files"](images/aws_screenshots/S3/06_upload_app_files.PNG "Upload static website files")
+
+***Step 7*** - **Verify static website files uploaded**
+
+!["07_verify_app_upload"](images/aws_screenshots/S3/07_verify_app_upload.PNG "Verify files uploaded")
 
 ***
 
