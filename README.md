@@ -39,19 +39,19 @@ From the perspective of the user:
 
 ### Architecture Diagrams
 
-*Architectural overview:*
+**Architectural overview:**
 
 !["spg_architecture"](images/architecture_diagrams/spg_architecture.png "SPG architecture")
 
-*Upload architecture:*
+**Upload architecture:**
 
 !["spg_upload_architecture"](images/architecture_diagrams/spg_upload_architecture.png "SPG upload architecture")
 
-*View architecture:*
+**View architecture:**
 
 !["spg_view_architecture"](images/architecture_diagrams/spg_view_architecture.png "SPG view architecture")
 
-*Delete architecture:*
+**Delete architecture:**
 
 !["spg_delete_architecture"](images/architecture_diagrams/spg_delete_architecture.png "SPG delete architecture")
 ***
@@ -99,6 +99,7 @@ From the perspective of the user:
 
 `"AllowedOrigins":["*"]` *"ALLOW ANY ORIGIN (DOMAIN) TO SEND CROSS-ORIGIN REQUESTS TO BUCKET"* (restrict to specific origins for increased security)
 
+***
 
 ### - Amazon DynamoDB
 - Create DynamoDB table to serve as storage solution for uploaded image metadata: configure AWS CLI; create table; verify table creation; test table by creating sample record and querying to verify the record was created; delete record before verifying deletion was successful. Steps completed using AWS CLI in bash terminal.
@@ -145,6 +146,7 @@ The json output currently displays `"TableStatus": "CREATING"`. This status will
 
 !["07_test_verify_delete"](images/aws_screenshots/DynamoDB/07_test_verify_delete.PNG "Verify delete successful")
 
+***
 
 ### - AWS IAM:
 - Create an IAM role allowing AWS Lambda to assume access to S3 and DynamoDB: Create trust policy; attach trust policy to IAM role; verify role was created; attach AWS-managed policies to role allowing full access to Amazon S3 and Amazon DynamoDB services; verify policies were attached. Steps completed using AWS CLI in bash terminal.
@@ -173,6 +175,7 @@ The json output currently displays `"TableStatus": "CREATING"`. This status will
 
 !["06_verify_policies"](images/aws_screenshots/IAM/06_verify_policies.PNG "Verify policies")
 
+***
 
 ### - Amazon API Gateway
 - Create an Amazon API Gateway REST API to route requests: create API; create and verify resource (/photos); create and verify GET, POST and DELETE resource methods; deploy API. Steps completed using AWS CLI in bash terminal.
@@ -205,6 +208,7 @@ The json output currently displays `"TableStatus": "CREATING"`. This status will
 
 !["06_deploy_api"](images/aws_screenshots/API_Gateway/06_deploy_api.PNG "Deploy REST API")
 
+***
 
 ### - AWS Lambda
 - Create and deploy Lambda functions (written in Node.js) for fetch, upload and delete operations (SEE </aws/lambda/> .js files for code breakdown) Create and deploy Lambda functions; integrate Lambda functions with API Gateway. Steps completed using AWS CLI in bash terminal.
@@ -243,10 +247,13 @@ The json output currently displays `"TableStatus": "CREATING"`. This status will
 
 ***Steps 5 and 6*** - *Repeat Step 4 for `UploadPhoto` (integrate with resouce POST method) and `FetchPhotos` (integrate with resource GET method) functions*
 
+***
+
 ### Technologies Used
 
 AWS Services:
 - Amazon S3 (static hosting/storage)
+- AWS IAM
 - Amazon API Gateway
 - AWS Lambda
 - Amazon DynamoDB
