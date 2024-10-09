@@ -253,12 +253,12 @@ The json output currently displays `"TableStatus": "CREATING"`. This status will
 
 AWS Services:
 - Amazon S3 (static hosting/storage)
+- Amazon DynamoDB
 - AWS IAM
 - Amazon API Gateway
 - AWS Lambda
-- Amazon DynamoDB
 
-Front-end:
+Languages:
 - HTML
 - CSS
 - JavaScript
