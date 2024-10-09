@@ -1,7 +1,5 @@
 const AWS = require('aws-sdk');
 // Create an instance of the S3 client [The S3 client is used to perform operations on Amazon S3, like uploading, downloading, and deleting objects]
-AWS.config.update({ region: 'us-west-2' });
-
 const S3 = new AWS.S3();
 const DynamoDB = new AWS.DynamoDB.DocumentClient();
 
